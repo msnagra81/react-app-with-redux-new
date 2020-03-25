@@ -16,36 +16,39 @@ import EditDeleteProduct from './components/manageProducts/EditDeleteProduct';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import Login from './components/authentication/Login';
+import { CookiesProvider } from 'react-cookie';
 require('dotenv').config();
 
 
 
 function App() {
   return (
+    <CookiesProvider>
     <Provider store={store}>
       <ReactNotification />
       <ComponentsWrapper/>
-      {renderApp}
+      {/* {renderApp} */}
       <Modal />
-    </Provider>
+    </Provider> 
+    </CookiesProvider>
   );
 }
 
-const appHome = 
-<div>
-  <Navbar/>
-      <Switch>
-        <Route exact path="/login" component={Login}></Route>
-      <Route exact path="/AddProduct" component={AddProduct}></Route>
-        <Route exact path="/" component={ProductList}></Route>
-        <Route exact path="/details" component={Details}></Route>
-        <Route exact path="/cart" component={Cart}></Route>
-        <Route exact path="/manageProducts" component={EditDeleteProduct}></Route>
-        <Route exact component={Default}></Route>
-      </Switch>
-      </div>
+// const appHome = 
+// <div>
+//   <Navbar/>
+//       <Switch>
+//         <Route exact path="/login" component={Login}></Route>
+//       <Route exact path="/AddProduct" component={AddProduct}></Route>
+//         <Route exact path="/" component={ProductList}></Route>
+//         <Route exact path="/details" component={Details}></Route>
+//         <Route exact path="/cart" component={Cart}></Route>
+//         <Route exact path="/manageProducts" component={EditDeleteProduct}></Route>
+//         <Route exact component={Default}></Route>
+//       </Switch>
+//       </div>
 
-const renderApp = store.getState().auth.authenticated? appHome: <Login/>;
+// const renderApp = store.getState().auth.authenticated? appHome: <Login/>;
 
 
 
